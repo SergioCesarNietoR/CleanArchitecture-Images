@@ -5,15 +5,19 @@ import android.app.Activity;
 import com.globant.equattrocchio.cleanarchitecture.mvp.view.ImagesView;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallServiceButtonObserver;
-import com.globant.equattrocchio.data.ImagesServicesImpl;
 import com.globant.equattrocchio.domain.GetLatestImagesUseCase;
 
-import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
+/**
+ * This is a presenter to get a list of images from a service
+ */
 public class ImagesPresenter {
 
     private ImagesView view;
+    /**
+     * Business logic layer
+     */
     private GetLatestImagesUseCase getLatestImagesUseCase;
 
 
@@ -22,34 +26,36 @@ public class ImagesPresenter {
         this.getLatestImagesUseCase = getLatestImagesUseCase;
     }
 
-    public void onCountButtonPressed() {
-
-        view.showText(new String(""));//todo: aca va el string que me devuelva el execute del usecase
-
-
+    /**
+     * Show the json response
+     * @param jsonResponse JSON response, list images
+     */
+    public void onShowDataResponse(String jsonResponse) {
+        view.showText(jsonResponse);
     }
 
+    /**
+     * This method execute the use case for download the list of images.
+     */
     private void onCallServiceButtonPressed() {
 
-        getLatestImagesUseCase.execute(new DisposableObserver<Boolean>() {
+        getLatestImagesUseCase.execute(new DisposableObserver<String>() {
             @Override
-            public void onNext(@NonNull Boolean aBoolean) {
-                loadFromPreferences();
+            public void onNext(String imagesServices) {
+                onShowDataResponse(imagesServices);
             }
 
             @Override
-            public void onError(@NonNull Throwable e) {
+            public void onError(Throwable e) {
                 view.showError();
             }
 
             @Override
             public void onComplete() {
-                new ImagesServicesImpl().getLatestImages(null);
+
             }
         }, null);
 
-
-        //todo acá tengo que llamar a la domain layer para que llame a la data layer y haga el llamdo al servicio
     }
 
     private void loadFromPreferences() {
