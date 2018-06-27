@@ -5,7 +5,7 @@ import com.globant.equattrocchio.data.response.Result;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-public interface SplashbaseApi {
+public interface SplashBaseApi {
 
     @GET("api/v1/images/latest")
     Call<Result> getImages();

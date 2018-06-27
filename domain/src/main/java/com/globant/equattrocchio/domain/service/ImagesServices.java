@@ -4,5 +4,5 @@ import io.reactivex.Observer;
 
 public interface ImagesServices {
 
-    void getLatestImages(Observer<Boolean> observer);
+    void getLatestImages(Observer<String> observer);
 }

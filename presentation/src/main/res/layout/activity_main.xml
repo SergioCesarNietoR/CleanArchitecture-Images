@@ -13,5 +13,12 @@
             android:id="@+id/tv_incoming_json"
             android:text="@string/incoming_json"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/tv_height" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_images"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 </LinearLayout>

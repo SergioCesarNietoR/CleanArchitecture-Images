@@ -13,7 +13,6 @@ public class Result {
     public List<Image> getImages() {
         return mImages;
     }
-
     public void setImages(List<Image> images) {
         this.mImages = images;
     }

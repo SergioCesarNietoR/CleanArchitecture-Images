@@ -1,6 +1,7 @@
 package com.globant.equattrocchio.cleanarchitecture.mvp.view;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.globant.equattrocchio.cleanarchitecture.R;
@@ -14,6 +15,7 @@ import butterknife.OnClick;
 public class ImagesView extends ActivityView {
 
     @BindView(R.id.tv_incoming_json) TextView tvlabel;
+    @BindView(R.id.rv_images) public RecyclerView rvImages;
 
     public ImagesView(AppCompatActivity activity) {
         super(activity);
